@@ -1,0 +1,29 @@
+.meanings{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    height: 75vh;
+    border: 10px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    padding: 5px 10px;
+    overflow-x: hidden;
+}
+.subTitle{
+    font-size: 5vw;
+    font-family: 'Courier New', Courier, monospace;
+}
+@media (max-width:900px){
+    .meanings{
+        height: 80vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}
+.singleMean{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+}

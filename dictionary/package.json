@@ -1,0 +1,9 @@
+{
+  "name": "dictionary",
+  "version": "0.0.0",
+  "description": "dictionary",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
