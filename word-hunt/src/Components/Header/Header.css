@@ -29,3 +29,8 @@
 .select{
     width: 43%;
 }
+.error {
+    position: fixed;
+    top: 33vh;
+    left: 26.3vw;
+}

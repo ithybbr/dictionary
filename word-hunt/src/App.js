@@ -13,6 +13,7 @@ function App() {
     const [word, setWord] = useState("");
     const [category, setCategory] = useState("en");
     const [LightMode, setsLightMode] = useState(false);
+    const [Username, setUsername] = useState(false);
     const DarkMode = withStyles({
         switchBase: {
             color: grey[300],
@@ -34,8 +35,30 @@ function App() {
             console.log(error);
         }
     };
-    // console.log(meanings);
-
+    const name = async () => {
+        try {
+        const data = await axios({
+            url: 'http://localhost/ict%20project/mda/username.php?action=read',
+            method: 'get',
+            timeout: 8000,
+            headers:{
+                'Content-Type': 'application/json',
+            }
+            });
+            if(data.status === 200){
+                // test for status
+                console.log(data.status)
+            }    
+        setUsername(data.data);
+        console.log("username is: ", Username);
+    }
+    catch(error){
+        console.log(error, " something bad happened");
+    }
+    };
+    useEffect(() =>{
+        name();
+    })
     useEffect(() => {
         dictionaryApi();
     }, [word, category]);
@@ -53,9 +76,12 @@ function App() {
              maxWidth='md'
              style={{ display: "flex", flexDirection: "column", height: "100vh", justifyContent: "space-evenly" }}
              >
-                 <div style={{position:"absolute", top: 0, right: 15, paddingTop: 10}}>
+                 <div id = 'mode' style={{position:"absolute", top: 0, right: 15, paddingTop: 10}}>
                      <span>{LightMode?"Dark":"Light"} Mode</span> 
                 <DarkMode checked={LightMode} onChange={()=> setsLightMode(!LightMode)}/>
+                <span class="logout" style={{position:"absolute", top: 1, left: 0, paddingTop: 40}}>	
+				    <a style={{color: LightMode ? "black" : "white", transition: "0.5s linear"}} href="http://localhost/ict%20project/mda/logout.php"> Log Out </a>
+                </span>
                  </div>
                 <Header
                     category={category}
@@ -63,6 +89,7 @@ function App() {
                     word={word}
                     setWord={setWord}
                     LightMode={LightMode}
+                    Meanings = {meanings}
                 />
                 {meanings && (<Definitions word = {word}
                  meanings = {meanings}
